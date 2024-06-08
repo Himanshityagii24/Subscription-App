@@ -1,6 +1,7 @@
-import Nav from "../components/Nav/Nav"
+import Hero from "../components/Hero/Hero";
 
-const LandingPage = () =>{
-    return <Nav/>
+const LandingPage = () => {
+  return <Hero />;
 };
+
 export default LandingPage;

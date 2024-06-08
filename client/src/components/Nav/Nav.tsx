@@ -1,34 +1,39 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import ModalComponent from '../Modal/Modal';
-import { Link } from "react-router-dom";
+import { Navbar, NavItem, NavLink } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context";
+import styled from "styled-components";
 
-const NavBar = () => {
+const LeftNavContainer = styled.div`
+  margin-left: auto;
+`;
+
+const Nav = () => {
+  const [state, setState] = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setState({ data: null, loading: false, error: null });
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Brand</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+    <Navbar>
+      <NavItem>
+        <Link to="/" className="nav-link">
+          Home
+        </Link>
+      </NavItem>
+      {state.data && (
+        <LeftNavContainer>
           <NavItem>
-            <Link to="/" className="nav-link">Home</Link>
+            <NavLink onClick={handleLogout}>Logout</NavLink>
           </NavItem>
-          <NavItem>
-            <ModalComponent text="Signup" variant="primary" isSignupFlow={true} />
-          </NavItem>
-          <NavItem>
-            <ModalComponent text="Login" variant="danger" isSignupFlow={false} />
-          </NavItem>
-          {localStorage.getItem("token") && (
-            <NavItem>
-              <Link to="/" className="nav-link">Logout</Link>
-            </NavItem>
-          )}
-        </Nav>
-      </Navbar.Collapse>
+        </LeftNavContainer>
+      )}
     </Navbar>
   );
 };
 
-export default NavBar;
+export default Nav;

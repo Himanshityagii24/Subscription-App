@@ -1,5 +1,6 @@
-import React from 'react'
-import styled from 'styled-components';
+import styled from "styled-components";
+import { Container } from "react-bootstrap";
+import ModalComponent from "../Modal/Modal";
 
 const HeroComponent = styled.header`
   padding: 5rem 0;
@@ -9,12 +10,38 @@ const HeroComponent = styled.header`
   background-position: center;
 `;
 
+const HeaderContainer = styled.div`
+  background-color: rgb(5, 148, 112);
+  padding: 3rem;
+  color: white;
+  width: 32.5rem;
+`;
 
+const Heading = styled.h1`
+  font-size: 5rem;
+`;
 
-const  Hero =()  =>{
+const SubHeading = styled.h3`
+  margin: 1rem 0;
+  font-weight: 400;
+`;
+
+const Hero = () => {
   return (
-   <HeroComponent></HeroComponent>
-  )
+    <HeroComponent>
+      <Container>
+        <HeaderContainer>
+          <Heading>Feed your mind with the best</Heading>
+          <SubHeading>
+            Grow, learn, and become more successful by reading some of the top
+            article by highly reputable individuals
+          </SubHeading>
+          <ModalComponent text="Signup" variant="primary" isSignupFlow={true} />
+          <ModalComponent text="Login" variant="danger" isSignupFlow={false} />
+        </HeaderContainer>
+      </Container>
+    </HeroComponent>
+  );
 };
 
 export default Hero;

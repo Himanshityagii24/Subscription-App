@@ -14,6 +14,6 @@
  <h2>Bougth Premium plan</h2>
  <img src = "payment.png">
  <h2>Stripe dashboard</h2>
- <img src = "stripe.png">
+ <img src = "Stripe.png">
 <h2>Database</h2>
 <img src = "database.png">

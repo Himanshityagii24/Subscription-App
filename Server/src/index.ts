@@ -3,6 +3,7 @@ import authRoutes from './routes/auth';
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import articlesRoutes from "./routes/articles";
 import subsRoutes from "./routes/subs";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 // Use the authRoutes middleware for paths starting with "/auth"
 app.use("/auth", authRoutes);
 app.use("/subs", subsRoutes);
+app.use("/articles",articlesRoutes)
 
 // Define a default route
 app.get("/", (req, res) => {

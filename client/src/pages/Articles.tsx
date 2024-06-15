@@ -64,10 +64,12 @@ const Articles = () => {
   }, []);
 
   const fetchArticles = async () => {
-    const { data: response } = await axios.get(
-      "http://localhost:8080/articles"
-    );
-    setArticles(response);
+    try {
+      const { data: response } = await axios.get("http://localhost:8080/articles");
+      setArticles(response);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+    }
   };
 
   return (

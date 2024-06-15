@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from 'express-validator';
-import User from "../models/user"; // Use correct case for User
+import User from "../models/user"; 
+// Use correct case for User
+import Article from "../models/article"
 import Stripe from "stripe";
 import { stripe } from "../utils/stripe";
 import { checkAuth } from '../middleware/checkAuth';
@@ -28,7 +30,6 @@ router.post("/session", checkAuth, async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-
     // Create a new session with the user's customer ID
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
@@ -37,7 +38,7 @@ router.post("/session", checkAuth, async (req, res) => {
         price: req.body.priceId,
         quantity: 1
       }],
-      success_url: "http://localhost:3000",
+      success_url: "http://localhost:3000/articles",
       cancel_url: "http://localhost:3000/article-plans",
       customer: user.customerStripeId
     }, {

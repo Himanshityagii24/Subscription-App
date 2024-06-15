@@ -15,4 +15,5 @@
  <img src = "payment.png">
  <h2>Stripe dashboard</h2>
  <img src = "stripe.png">
-
+<h2>Database</h2>
+<img src = "database.png">
